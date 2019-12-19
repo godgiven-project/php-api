@@ -34,20 +34,18 @@ $f3->set('f3_hostdb','database_host');
 /*                                 Master Configuration                                */
 /*                                                                                     */
 /* $f3->set('f3_namedbm','master_database_name');                                      */
-/* $f3->set('f3_namedbm','cp36718_boom_ggn');                                          */
-/* $f3->set('f3_userdbm','cp36718_boom_ggn');                                          */
-/* $f3->set('f3_pasdbm' ,'demq4lw7yozk');                                              */
-/* $f3->set('f3_portdbm','3306');                                                      */
-/* $f3->set('f3_hostdbm','localhost');                                                 */
+/* $f3->set('f3_userdbm','database_user');                                             */
+/* $f3->set('f3_pasdbm' ,'database_password');                                         */
+/* $f3->set('f3_portdbm','database_port');                                             */
+/* $f3->set('f3_hostdbm','database_host');                                             */
 /*                                                                                     */
 /*                                 Slave Configuration                                 */
 /*                                                                                     */
 /* $f3->set('f3_namedbs','slave_database_name');                                       */
-/* $f3->set('f3_namedbs','cp36718_boom_ggn');                                          */
-/* $f3->set('f3_userdbs','cp36718_boom_ggn');                                          */
-/* $f3->set('f3_pasdbs' ,'demq4lw7yozk');                                              */
-/* $f3->set('f3_portdbs','3306');                                                      */
-/* $f3->set('f3_hostdbs','localhost');                                                 */
+/* $f3->set('f3_userdbs','database_user');                                             */
+/* $f3->set('f3_pasdbs' ,'database_password');                                         */
+/* $f3->set('f3_portdbs','database_port');                                             */
+/* $f3->set('f3_hostdbs','database_host');                                             */
 /***************************************************************************************/
 
 /******************* API MasterKey for session configuration ***************************/
