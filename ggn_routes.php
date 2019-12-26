@@ -1,6 +1,7 @@
 <?php
 /*********************************************************  ROUTES  ***************************************************************/
     $f3->route('GET                         /'                                        ,     'DashboardController->home');
+    $f3->route('POST                        /mobile'                                  ,     'UsersController->mobile');
     $f3->route('POST                        /login'                                   ,     'UsersController->login');
     $f3->route('GET|POST                    /register'                                ,     'UsersController->register');
     $f3->route('GET|POST                    /register_step2'                          ,     'UsersController->register_step2');
