@@ -1,7 +1,15 @@
 <?php
+/***************************************************************************************/
+/*************** ggn_cloud.php file is a cloud for all global variables ****************/
 /*****************************************************************/
-/**** ggn_cloud.php file is a cloud for all global variables *****/
-/*****************************************************************/
+/****************** date_j.php file is for jalalian(iranina) date **********************/
+require_once('class/date_j.php');
+/********************** ghasedak.php file is for sending sms ***************************/
+/*require_once('class/sms/ghasedak.php');*/
+
+/******************* email_normal.php file is for sending email ************************/
+require_once('class/email/email_normal.php');
+/***************************************************************************************/
 $place_ggn = file_get_contents('class/json/Province.json'); 
 $place_ggn = json_decode($place_ggn, true);
 $state_ggn = array();
@@ -79,19 +87,4 @@ $f3->set('force_user_meta',array(
         ]
     ),
 ));
-/*****************************/
-/****** notifications ********/
-/*****************************/
-if($f3->get('user_Acl') != 'guest'){
-    $dbs = $f3->get('DBS');
-    $force_user_active = $dbs->exec('SELECT * FROM person_meta_ggn WHERE per_meta_ref ='.$f3->get('auth')['id']." AND per_meta_name = 'force_user_active' and per_meta_value = 'true'");
-    if(! $force_user_active){
-        $current_url = $f3->get('PATH');
-        if($current_url != '/register_step2' and  $current_url != '/logout' and  $current_url != '/clear'){
-            $sec_url = $f3->get('main_url')."/register_step2";
-            header("Location: ".$sec_url);
-            die();
-        }
-    }
-}
 ?>

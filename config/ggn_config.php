@@ -4,7 +4,7 @@
 /*              ggn_config.php file is for all sites configuration                     */
 /*                                                                                     */
 /***************************************************************************************/
-
+require_once('ggn_acl.php');
 /****************** date_j.php file is for jalalian(iranina) date **********************/
 require_once('class/date_j.php');
 
@@ -20,11 +20,11 @@ $f3->set('sec_url' ,'sampel url:http://localhost/php-api2/');
 $f3->set('shortcut_icon',$f3->get('main_url').'favicon.png');
 
 /*************************** API Main Database configuration ********************************/
-$f3->set('f3_namedb','database_name');
-$f3->set('f3_userdb','database_user');
-$f3->set('f3_pasdb' ,'database_password');
-$f3->set('f3_portdb','database_port');
-$f3->set('f3_hostdb','database_host');
+$f3->set('f3_namedb','godgiven');
+$f3->set('f3_userdb','phpmyadmin');
+$f3->set('f3_pasdb' ,'1');
+$f3->set('f3_portdb','3306');
+$f3->set('f3_hostdb','localhost');
 
 /***************************************************************************************/
 /*                         API Master Database configuration                           */
@@ -47,7 +47,7 @@ $f3->set('f3_hostdb','database_host');
 /* $f3->set('f3_portdbs','database_port');                                             */
 /* $f3->set('f3_hostdbs','database_host');                                             */
 /***************************************************************************************/
-
+$f3->set('DEBUG',3);
 /******************* API MasterKey for session configuration ***************************/
 $f3->set('security_key' ,'your security_key');
 

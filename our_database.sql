@@ -44,17 +44,16 @@ CREATE TABLE `persons_ggn` (
   `per_city` varchar(35) COLLATE utf8_persian_ci DEFAULT NULL,
   `per_national_id` varchar(12) COLLATE utf8_persian_ci NOT NULL,
   `per_job` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
-  `per_education` enum('No formal education','Primary education','Secondary education or high school','GED or Vocational qualification','Bachelor''s degree','Master''s degree','Doctorate','Doctorate and Higher') COLLATE utf8_persian_ci DEFAULT NULL,
-  `per_pic` longtext CHARACTER SET utf8 DEFAULT NULL
+  `per_education` enum('No formal education','Primary education','Secondary education or high school','GED or Vocational qualification','Bachelor''s degree','Master''s degree','Doctorate','Doctorate and Higher') COLLATE utf8_persian_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 --
 -- Dumping data for table `persons_ggn`
 --
 
-INSERT INTO `persons_ggn` (`per_id`, `per_user_id`, `per_personality`, `per_Lname`, `per_Fname`, `per_email`, `per_tell`, `per_address`, `per_mobile`, `per_email_active`, `per_tell_active`, `per_address_active`, `per_mobile_active`, `per_state`, `per_city`, `per_national_id`, `per_job`, `per_education`, `per_pic`) VALUES
-(1, 1, 'single', 'Bagheri', 'Mahdi', 'mahdifox2000@gmail.com', '09376028183', '', '0912345678', 'true', 'true', 'true', 'true', '0', '0', '0923563334', 'supervisor', 'Master\'s degree', 'assets/images/me.jpg'),
-(2, 2, 'single', 'خدادادی', 'محمد', 'asmanp2012@gmail.com', '09382318206', '', '', 'false', 'false', 'false', 'false', NULL, NULL, '', NULL, NULL, NULL);
+INSERT INTO `persons_ggn` (`per_id`, `per_user_id`, `per_personality`, `per_Lname`, `per_Fname`, `per_email`, `per_tell`, `per_address`, `per_mobile`, `per_email_active`, `per_tell_active`, `per_address_active`, `per_mobile_active`, `per_state`, `per_city`, `per_national_id`, `per_job`, `per_education`) VALUES
+(1, 1, 'single', 'Bagheri', 'Mahdi', 'mahdifox2000@gmail.com', '09376028183', '', '0912345678', 'true', 'true', 'true', 'true', '0', '0', '0923563334', 'supervisor', 'Master\'s degree'),
+(2, 2, 'single', 'خدادادی', 'محمد', 'asmanp2012@gmail.com', '09382318206', '', '', 'false', 'false', 'false', 'false', NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 --
@@ -80,20 +79,20 @@ CREATE TABLE `users_ggn` (
   `user_pass` varchar(32) CHARACTER SET utf8 NOT NULL,
   `user_alias` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
   `user_type` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `user_per` smallint(5) UNSIGNED NOT NULL,
   `user_active` enum('true','false') COLLATE utf8_persian_ci NOT NULL DEFAULT 'false',
   `user_block` enum('true','false') COLLATE utf8_persian_ci DEFAULT 'false',
-  `user_pic` longtext CHARACTER SET utf8 DEFAULT NULL,
-  `user_react_routes` longtext COLLATE utf8_persian_ci DEFAULT NULL,
-  `user_permissions` longtext COLLATE utf8_persian_ci DEFAULT NULL
+  `user_pic` longtext CHARACTER SET utf8,
+  `user_permissions` longtext COLLATE utf8_persian_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
 
 --
 -- Dumping data for table `users_ggn`
 --
 
-INSERT INTO `users_ggn` (`user_id`, `user_login`, `user_pass`, `user_alias`, `user_type`, `user_active`, `user_block`, `user_pic`, `user_react_routes`, `user_permissions`) VALUES
-(1, 'mo', 'c4ca4238a0b923820dcc509a6f75849b', 'مهدی', 'admin', 'true', 'false', NULL, 'a:2:{i:0;s:10:\"/dashboard\";i:1;s:8:\"/profile\";}', NULL),
-(2, 'asmanp2012', 'c4ca4238a0b923820dcc509a6f75849b', NULL, 'client', 'true', 'false', NULL, NULL, NULL);
+INSERT INTO `users_ggn` (`user_id`, `user_login`, `user_pass`, `user_alias`, `user_type`, `user_per`, `user_active`, `user_block`, `user_pic`, `user_permissions`) VALUES
+(1, 'mo', 'c4ca4238a0b923820dcc509a6f75849b', 'مهدی', 'admin', 1, 'true', 'false', NULL, NULL),
+(2, 'asmanp2012', 'c4ca4238a0b923820dcc509a6f75849b', NULL, 'client', 0, 'true', 'false', NULL, NULL);
 
 ALTER TABLE `persons_ggn`
   ADD PRIMARY KEY (`per_id`),
