@@ -1,9 +1,46 @@
 <?php use DB\SQL\ggn_Mapper;
 class UsersController extends MainController{
 	/***********************************************************************/
-	/*																	 */
-	/*	 login function for user authentication  in `/login` route	   */
-	/*																	 */
+	/*								       */								 */
+	/*     mobile function for user mobile cheking  in `/mobile` route     */
+	/*								       */								 */
+	/***********************************************************************/
+	public function mobile($f3) {
+		$data = $f3->get('POST');
+		$data = validate_data($data);
+		$result = array();
+		if($data['mobile']){
+			if(strlen($data['mobile']) >= 11 && strlen($data['mobile']) <= 14){
+				if(substr($data['mobile'], 0 , 3) == "+98"){
+					$data['mobile'] = "0".substr($data['mobile'], 3 , 12);
+				}
+				if(substr($data['mobile'], 0 , 4) == "0098"){
+					$data['mobile'] = "0".substr($data['mobile'], 4 , 12);
+				}
+				if(is_numeric($data['mobile'])){
+					$person = $this->dbs->exec("SELECT per_mobile FROM persons_ggn WHERE per_mobile = ?", $data['mobile']);
+					if($person){
+						$result['exist']	= true;
+						$result['message']  = "user exist";
+					}
+					else{
+						$result['exist']	= false;
+						$result['message']  = "user not exist";
+					}
+				}
+			}
+			else{
+				$result['exist']	= false;
+				$result['err']	  = 'invalid number';
+
+			}
+			die(json_encode($result));
+		}
+	}
+	/***********************************************************************/
+	/*								       */								 */
+	/*	 login function for user authentication  in `/login` route     */
+	/*								       */								 */
 	/***********************************************************************/
 	public function login($f3) {
 		// required data
