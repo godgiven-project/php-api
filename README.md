@@ -32,10 +32,10 @@ index.php
 you can define any routes as you like in `ggn_routes.php` as follows:
 
 $f3->route('Method Rout','Class->Function');
->Method: GET|POST|PUT|delete
->Rout: start by `/`
->Class: PHP Class
->Function: function of your Class
+- Method: GET|POST|PUT|delete
+- Rout: start by `/`
+- Class: PHP Class
+- Function: function of your Class
 
 Mapper is a fatfree DB class  
 -------------------------------
