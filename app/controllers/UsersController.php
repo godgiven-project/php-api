@@ -2,12 +2,26 @@
 class UsersController extends MainController{
 	/***********************************************************************/
 	/*																	 */
+	/*	  profile function for user profile data in `/profile` route	 */
+	/*																	 */
+	/***********************************************************************/
+	public function userinfo($f3){
+		$person = $this->dbs->exec( 'SELECT * FROM persons_ggn WHERE per_id = ?',array($f3->get('auth')['id']) );
+		//var_dump($f3->get('auth')['id']);
+		$person = $person[0];
+		$result['data'] = $person;
+		$result['token']	  = $f3->get('enc_token');
+		$result['validate']   = 'true';
+		die(json_encode($result));
+	}
+	/***********************************************************************/
+	/*																	 */
 	/*	 login function for user authentication  in `/login` route	   */
 	/*																	 */
 	/***********************************************************************/
 	public function login($f3) {
 		// required data
-		$data = $f3->get('POST');
+		$data = json_decode($f3->get('BODY'),true);
 		if($data['password'] == "" or $data['username'] == ''){
 			$f3->set('show_title','ورود');
 			$result = array(
@@ -19,13 +33,15 @@ class UsersController extends MainController{
 		$users = new ggn_Mapper($this->dbs, 'users_ggn');
 		$user = $users->load(array("`user_login` = ? AND `user_pass` = ? ", $data['username'] , md5($data['password']) ));
 		if ($user != false and $user->user_block == 'false' and $user->user_active == true) {
+			$person = $this->dbs->exec( 'SELECT * FROM persons_ggn WHERE per_id = ?',array($user->user_person_id) );
+			$person = $person[0];
+			//var_dump($person);die();
 			$session = array(
 				'rand'   => rand(100000,999999), 
-				'id'	 => $user->user_id,
-				'fname'  => $person->per_Fname.' '.$person->per_Lname,
-				'type'   => $user->user_type , 
+				'id'	 => $person['per_id'],
+				'fname'  => $person['per_Fname'].' '.$person['per_Lname'],
 				'date'   => date('Y:m:d h:i:s',strtotime("+2 days")) , 
-				'permit' => $user->user_per,
+				'permission' => $user->user_permission,
 				'active' => true,
 			);
 			$session	 = json_encode($session);
@@ -72,7 +88,7 @@ class UsersController extends MainController{
 	/*																	 */
 	/***********************************************************************/
 	public function register($f3){
-		$data = $f3->get('POST');
+		$data = json_decode($f3->get('BODY'),true);
 		$data = validate_data($data);
 		if($data) {
 			require_once($f3->get('MODEL').'/UserModel.php');
@@ -92,6 +108,11 @@ class UsersController extends MainController{
 				die(json_encode($result));
 			}
 		}
+		$result = array(
+			false,
+			"Please input your information"
+		);
+		die(json_encode($result));
 	}
 	/***********************************************************************/
 	/*																	 */
@@ -191,20 +212,6 @@ class UsersController extends MainController{
 				}
 				break;
 		}
-		die(json_encode($result));
-	}
-	/***********************************************************************/
-	/*																	 */
-	/*	  profile function for user profile data in `/profile` route	 */
-	/*																	 */
-	/***********************************************************************/
-	public function profile($f3){
-		require_once($f3->get('MODEL').'/UserModel.php');
-		$UserModel = new UserModel;
-		var_dump($f3->get('auth')['id']);
-		$result['data'] = $UserModel->get_user_data($f3->get('auth')['id']);
-		$result['token']	  = $f3->get('enc_token');
-		$result['validate']   = 'true';
 		die(json_encode($result));
 	}
 }

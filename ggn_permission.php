@@ -2,7 +2,7 @@
 /************************************************************************************/
 /* permission.php is a fat-free script that check user(s) permissions then serve it */
 /************************************************************************************/
-
+	
 /************************************************************************************/
 /******************************* get user token from headers ************************/ 
 /************************************************************************************/
@@ -18,19 +18,17 @@ $token = json_decode($dec_token,true);
 /************************************************************************************/
 if($token && $token['active'] == 'true'){
 	$date1=date_create(date("Y-m-d"));
-    $date2=date_create($token['date']);
-    $diff=date_diff($date1,$date2);
-    $diff = $diff->format("%a");
-    if($diff > 0){
-        $f3->set('user_Acl',$token['type']);
-    	$f3->set('auth',$token);
-    	$f3->set('permit',$token['permit']);
-    	$f3->set('enc_token',$enc_token);
-    }
+	$date2=date_create($token['date']);
+	$diff=date_diff($date1,$date2);
+	$diff = $diff->format("%a");
+	if($diff > 0){
+		$f3->set('auth',$token);
+		$f3->set('permission',$token['permission']);
+		$f3->set('enc_token',$enc_token);
+	}
 }
 else{
-	$f3->set('user_Acl','guest');
-	$f3->set('permit', 1 );
+	$f3->set('permission', 1 );
 }
 
 /************************************************************************************/
@@ -39,9 +37,9 @@ else{
 global $f3;
 function Acl_Check(){
 	global $f3;
-	$permit 	= $f3->get('permit');
+	$permission 	= $f3->get('permission');
 	$ROOT_PATH  = $f3->get('PATH');
-	if(IsAllow($permit , $ROOT_PATH)){
+	if(IsAllow($permission , $ROOT_PATH)){
 		return true;
 	}
 	else{
@@ -76,7 +74,7 @@ function IsAllow( $permissions , $current_route ) {
 /************************************************************************************/
 if(! Acl_Check()){
 	$result['validate']   = 'false';
-    $result['token']      = '';
+	$result['token']	  = '';
 	die(json_encode($result));
 }
 ?>

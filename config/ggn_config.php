@@ -16,9 +16,6 @@ require_once('class/email/email_normal.php');
 
 /****************************** API url configuration **********************************/
 $f3->set('main_url','sampel url:http://localhost/php-api/');
-$f3->set('sec_url' ,'sampel url:http://localhost/php-api2/');
-$f3->set('shortcut_icon',$f3->get('main_url').'favicon.png');
-
 /*************************** API Main Database configuration ********************************/
 $f3->set('f3_namedb','godgiven');
 $f3->set('f3_userdb','phpmyadmin');
