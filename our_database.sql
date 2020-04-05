@@ -55,11 +55,9 @@ INSERT INTO `persons_ggn` (`per_id`, `per_personality`, `per_Lname`, `per_Fname`
 (2, 'single', 'خدادادی', 'محمد', 'asmanp2012@gmail.com', '09382318206', '', '', 'false', 'false', 'false', 'false', NULL, NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `users_ggn`
 --
-
 CREATE TABLE `users_ggn` (
   `user_id` bigint(20) NOT NULL,
   `user_person_id` bigint(20) NOT NULL,
@@ -71,7 +69,6 @@ CREATE TABLE `users_ggn` (
   `user_block` enum('true','false') COLLATE utf8_persian_ci DEFAULT 'false',
   `user_pic` longtext CHARACTER SET utf8
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_persian_ci;
-
 --
 -- Dumping data for table `users_ggn`
 --
@@ -100,7 +97,6 @@ ALTER TABLE `users_ggn`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
 --
 -- AUTO_INCREMENT for table `persons_ggn`
 --

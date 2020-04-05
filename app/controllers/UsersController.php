@@ -1,9 +1,9 @@
 <?php use DB\SQL\ggn_Mapper;
 class UsersController extends MainController{
 	/***********************************************************************/
-	/*																	 */
-	/*	  profile function for user profile data in `/profile` route	 */
-	/*																	 */
+	/*																	   */
+	/*	  profile function for user profile data in `/profile` route	   */
+	/*																	   */
 	/***********************************************************************/
 	public function userinfo($f3){
 		$person = $this->dbs->exec( 'SELECT * FROM persons_ggn WHERE per_id = ?',array($f3->get('auth')['id']) );
@@ -15,9 +15,9 @@ class UsersController extends MainController{
 		die(json_encode($result));
 	}
 	/***********************************************************************/
-	/*																	 */
-	/*	 login function for user authentication  in `/login` route	   */
-	/*																	 */
+	/*																	   */
+	/*	 login function for user authentication  in `/login` route	  	   */
+	/*																	   */
 	/***********************************************************************/
 	public function login($f3) {
 		// required data
