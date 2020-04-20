@@ -64,7 +64,7 @@ CREATE TABLE `users_ggn` (
   `user_login` varchar(32) CHARACTER SET utf8 NOT NULL,
   `user_pass` varchar(32) CHARACTER SET utf8 NOT NULL,
   `user_alias` varchar(50) COLLATE utf8_persian_ci DEFAULT NULL,
-  `user_permission` smallint(5) UNSIGNED NOT NULL DEFAULT '1',
+  `user_permission` char(255) COLLATE utf8_persian_ci NOT NULL DEFAULT '10000000000000000000',
   `user_active` enum('true','false') COLLATE utf8_persian_ci NOT NULL DEFAULT 'false',
   `user_block` enum('true','false') COLLATE utf8_persian_ci DEFAULT 'false',
   `user_pic` longtext CHARACTER SET utf8
@@ -74,8 +74,8 @@ CREATE TABLE `users_ggn` (
 --
 
 INSERT INTO `users_ggn` (`user_id`, `user_person_id`, `user_login`, `user_pass`, `user_alias`, `user_permission`, `user_active`, `user_block`, `user_pic`) VALUES
-(1, 1, 'mo', 'c4ca4238a0b923820dcc509a6f75849b', 'مهدی', 1, 'true', 'false', NULL),
-(2, 2, 'asmanp2012', 'c4ca4238a0b923820dcc509a6f75849b', NULL, 7, 'true', 'false', NULL);
+(1, 1, 'mo', 'c4ca4238a0b923820dcc509a6f75849b', 'مهدی', '1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111', 'true', 'false', NULL),
+(2, 2, 'asmanp2012', 'c4ca4238a0b923820dcc509a6f75849b', NULL, '1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111', 'true', 'false', NULL);
 
 --
 -- Indexes for dumped tables
@@ -107,6 +107,3 @@ ALTER TABLE `persons_ggn`
 --
 ALTER TABLE `users_ggn`
   MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

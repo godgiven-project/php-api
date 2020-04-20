@@ -28,7 +28,7 @@ if($token && $token['active'] == 'true'){
 	}
 }
 else{
-	$f3->set('permission', 1 );
+	$f3->set('permission', "10" );
 }
 
 /************************************************************************************/
@@ -59,8 +59,8 @@ function IsAllow( $permissions , $current_route ) {
 		}
 		$MatchString = array();
 		preg_match($current_route,$key,$MatchString);
-		if( count($MatchString) >  0 ) {
-			if( ($permissions&$aclList[0]) > 0 ){
+		if( count($MatchString) >  0 ) {			
+			if( substr($permissions,$aclList[0],1) == "1" ){
 				$Allow = true;
 				return $Allow;
 			}

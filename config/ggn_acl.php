@@ -1,13 +1,13 @@
 <?php
 $Acl = [ 
-	'/login'			=> [ 1	, "login" 		] ,
-	'/logout'			=> [ 1	, "logout" 		] ,
-	'/register'			=> [ 1	, "register" 	] ,
-	'/' 				=> [ 1 	, "main page" 	] ,
-	'/users/userinfo'	=> [ 2 	, "userinfo" 	] ,
-	'/users'			=> [ 4	, "users"		] ,
-	'/users/%s'			=> [ 4	, "users"		] ,
-	
+	'/admin_login'		=> [ 0	 , "login" 		] ,
+	'/login'			=> [ 0	 , "login" 		] ,
+	'/logout'			=> [ 0	 , "logout" 	] ,
+	'/register'			=> [ 0	 , "register" 	] ,
+	'/users/userinfo'	=> [ 1 	 , "userinfo" 	] ,
+	'/' 				=> [ 50  , "main page" 	] ,
+	'/users'			=> [ 51	 , "users"		] ,
+	'/users/%s'			=> [ 52	 , "users"		] ,
 ];
 $f3->set('acl',$Acl);
 ?>

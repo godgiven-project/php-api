@@ -7,11 +7,14 @@ class DashboardController extends MainController {
 	/*                                                                                        */
 	/******************************************************************************************/
 	function home($f3){	
-		$data = array(
-			'msg' => __("hello world godgiven")
-		);
-		$data = json_encode($data);
-		die($data);
+		$count_number['count_persons'] = $this->dbs->exec('SELECT COUNT(*) as CountNumber FROM persons_ggn')[0]['CountNumber'];
+		$count_number['count_users'] = $this->dbs->exec('SELECT COUNT(*) as CountNumber FROM users_ggn')[0]['CountNumber'];
+		$count_number['count_disable'] = $this->dbs->exec('SELECT COUNT(*) as CountNumber FROM users_ggn WHERE user_active = false')[0]['CountNumber'];
+		$count_number['count_block'] = $this->dbs->exec('SELECT COUNT(*) as CountNumber FROM users_ggn WHERE user_block = false')[0]['CountNumber'];
+		$result['data'] 	  = $count_number;
+		$result['token']	  = $f3->get('enc_token');
+		$result['validate']   = 'true';
+		die(json_encode($result));
 	}
 	/******************************************************************************************/
 	/*                                                                                        */

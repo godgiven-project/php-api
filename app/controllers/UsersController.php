@@ -19,7 +19,7 @@ class UsersController extends MainController{
 	/*	 login function for user authentication  in `/login` route	  	   */
 	/*																	   */
 	/***********************************************************************/
-	public function login($f3) {
+	public function login( $f3 , $IsAdmin ) {
 		// required data
 		$data = json_decode($f3->get('BODY'),true);
 		if($data['password'] == "" or $data['username'] == ''){
@@ -31,7 +31,17 @@ class UsersController extends MainController{
 			die(json_encode($result));
 		}
 		$users = new ggn_Mapper($this->dbs, 'users_ggn');
-		$user = $users->load(array("`user_login` = ? AND `user_pass` = ? ", $data['username'] , md5($data['password']) ));
+		$append_query = "";
+		if($IsAdmin[0] == "/admin_login"){
+			$append_query = "";
+		}
+		$user = $users->load(
+			array(
+				"`user_login` = ? AND `user_pass` = ? ".$append_query, 
+				$data['username'] , 
+				md5($data['password']) 
+			)
+		);
 		if ($user != false and $user->user_block == 'false' and $user->user_active == true) {
 			$person = $this->dbs->exec( 'SELECT * FROM persons_ggn WHERE per_id = ?',array($user->user_person_id) );
 			$person = $person[0];
